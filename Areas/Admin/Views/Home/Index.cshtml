@@ -1,0 +1,55 @@
+﻿@model List<FurkanBelikirikSmartProFinalProject.Entities.Kitaplar>
+@{
+    ViewBag.Title = "Anasayfa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row align-items-center">
+    <div class="col-lg-6 col-md-12"><h1 class="display-6">Kütüphane Arşiv Tablosu</h1></div>
+    <div class="col-lg-6 col-md-12">
+        @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+        {
+            <div class="input-group">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon1"><i class="bi bi-search me-2"></i>Ara</button>
+                @Html.TextBox("aramaKelimesi", "", new { @class = "form-control", placeholder = "Kitap Adına Göre Ara" })
+            </div>
+
+        }
+    </div>
+</div>
+
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-light table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Kitap Adı</th>
+                    <th scope="col">Dil</th>
+                    <th scope="col">Yayım Yılı</th>
+                    <th scope="col">Sayfa Sayısı</th>
+                    <th scope="col">ISBN</th>
+                    <th scope="col">Yayınevi</th>
+                    <th scope="col">Yazar</th>
+                    <th scope="col">Stok</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row">@item.Id</th>
+                        <td>@item.KitapAdi</td>
+                        <td>@item.Dil</td>
+                        <td>@item.YayimYili</td>
+                        <td>@item.SayfaSayisi</td>
+                        <td>@item.ISBN</td>
+                        <td>@item.Yayınevi</td>
+                        <td>@item.Yazar.YazarAdi</td>
+                        <td class="text-center"><strong>@item.Stok</strong></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

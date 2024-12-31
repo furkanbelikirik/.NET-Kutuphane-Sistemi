@@ -1,0 +1,43 @@
+﻿@model FurkanBelikirikSmartProFinalProject.Entities.Yazarlar
+
+@{
+    ViewBag.Title = "Yazar Ekle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h2 class="text-center mb-4">Yazar Ekle</h2>
+        @using (Html.BeginForm())
+        {
+
+            @Html.AntiForgeryToken()
+            <form>
+                <div class="mb-3">
+                    <label for="inputAd" class="form-label">Yazar Adı</label>
+                    @Html.TextBoxFor(x => x.YazarAdi, new { @class = "form-control", placeholder = "Yazarın adını girin", required = "required" })
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Ekle</button>
+            </form>
+        }
+        @if (ViewBag.Mesaj == 1)
+        {
+            <div class="alert alert-success d-flex align-items-center mt-3" role="alert">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                <div>
+                   @Model.YazarAdi adlı yazar başarıyla eklendi!
+                </div>
+            </div>
+        }
+        else if (ViewBag.Mesaj == 0)
+        {
+            <div class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                <div>
+                    Kayıt işlemi sırasında bir hata meydana geldi!
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

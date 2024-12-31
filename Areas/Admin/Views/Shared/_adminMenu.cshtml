@@ -1,0 +1,30 @@
+﻿@{var isim = Session["Admin"] as FurkanBelikirikSmartProFinalProject.Entities.Admin; }
+
+<div class="collapse navbar-collapse d-lg-flex">
+    @Html.ActionLink("SmartPro Kütüphanesi", "Index", "Home", null, new { @class = "navbar-brand col-lg-3 me-0" })
+    <ul class="navbar-nav col-lg-3 justify-content-lg-end">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="@Url.Action("Index", "Home")">Anasayfa</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Kitaplar</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="@Url.Action("Index", "Kitap")">Görüntüle</a></li>
+                <li><a class="dropdown-item" href="@Url.Action("Ekle", "Kitap")">Ekle</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Yazarlar</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="@Url.Action("Index", "Yazar")">Görüntüle</a></li>
+                <li><a class="dropdown-item" href="@Url.Action("Ekle", "Yazar")">Ekle</a></li>
+            </ul>
+        </li>
+    </ul>
+    <div class="d-lg-flex col-lg-3 justify-content-lg-end">
+        <span>Hoşgeldin,&nbsp;</span><strong>@isim.Ad @isim.Soyad</strong>
+    </div>
+    <div class="d-lg-flex col-lg-3 justify-content-lg-end">
+        <a href="@Url.Action("Cikis","Login")" class="btn btn-dark">Çıkış Yap</a>
+    </div>
+</div>

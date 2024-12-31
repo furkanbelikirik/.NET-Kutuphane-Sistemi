@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body class="bg-light-subtle">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary rounded">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                @if (HttpContext.Current.Session["Admin"] != null)
+                {
+                    @Html.Partial("_adminMenu")
+                }
+                else
+                {
+                    @Html.Partial("_kullaniciMenu")
+                }
+
+            </div>
+        </nav>
+
+        <div class="my-5">
+            @RenderBody()
+        </div>
+
+        <footer class="row py-3 border-top">
+            <p>&copy; @DateTime.Now.Year - Furkan Belikırık <span><small>SmartPro Teknoloji Yazılım Uzmanlığı MVC Projesi</small></span></p>
+        </footer>
+    </div>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/jquery-3.7.1.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SmartPro Kütüphanesi</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body class="bg-light-subtle">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary rounded">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-lg-flex justify-content-between">
+                    @Html.ActionLink("SmartPro Kütüphanesi", "Index", "Home", new { area = "" }, new { @class = "navbar-brand col-lg-3 me-0" })
+                    <div class="d-lg-flex col-lg-3 justify-content-lg-end">
+                        <a href="@Url.Action("Index","Login",new { area = "Admin" })" class="btn btn-dark mx-3">Admin Giriş</a>
+                        <a href="@Url.Action("Index","Login",new { area = "Kullanici" })" class="btn btn-primary">Kullanıcı Giriş</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="my-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-12"><h1 class="display-6">Kütüphane Arşiv Tablosu</h1></div>
+                <div class="col-lg-6 col-md-12">
+                    @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+                    {
+                        <div class="input-group">
+                            <button class="btn btn-outline-secondary" type="submit" id="button-addon1"><i class="bi bi-search me-2"></i>Ara</button>
+                            @Html.TextBox("aramaKelimesi", "", new { @class = "form-control", placeholder = "Kitap Adına Göre Ara" })
+                        </div>
+
+                    }
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table table-light table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Kitap Adı</th>
+                                <th scope="col">Dil</th>
+                                <th scope="col">Yayım Yılı</th>
+                                <th scope="col">Sayfa Sayısı</th>
+                                <th scope="col">ISBN</th>
+                                <th scope="col">Yayınevi</th>
+                                <th scope="col">Yazar</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <th scope="row">@item.Id</th>
+                                    <td>@item.KitapAdi</td>
+                                    <td>@item.Dil</td>
+                                    <td>@item.YayimYili</td>
+                                    <td>@item.SayfaSayisi</td>
+                                    <td>@item.ISBN</td>
+                                    <td>@item.Yayınevi</td>
+                                    <td>@item.Yazar.YazarAdi</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <footer class="row py-3 border-top">
+            <p>&copy; @DateTime.Now.Year - Furkan Belikırık <span><small>SmartPro Teknoloji Yazılım Uzmanlığı MVC Projesi</small></span></p>
+        </footer>
+    </div>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/jquery-3.7.1.min.js"></script>
+</body>
+</html>

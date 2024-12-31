@@ -1,0 +1,96 @@
+﻿@model Tuple<List<FurkanBelikirikSmartProFinalProject.Entities.Kitaplar>, List<int>>
+
+@{
+    ViewBag.Title = "Kitap Kirala";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+
+}
+
+<div class="row">
+    <h1 class="display-6">Kitap Kirala</h1>
+</div>
+@if (ViewBag.KiralaMesaj != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" id="kiralaAlert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        @ViewBag.KiralaMesaj
+    </div>
+}
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-light table-hover align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Kitap Adı</th>
+                        <th scope="col">Yazar Adı</th>
+                        <th scope="col">Dil</th>
+                        <th scope="col">Yayım Yılı</th>
+                        <th scope="col">Sayfa Sayısı</th>
+                        <th scope="col">ISBN</th>
+                        <th scope="col">Yayınevi</th>
+                        <th scope="col">Stok</th>
+                        <th scope="col" class="text-center">İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    @foreach (var item in Model.Item1)
+                    {
+                        <tr>
+                            <th scope="row">@item.Id</th>
+                            <td>@item.KitapAdi</td>
+                            <td>@item.Yazar.YazarAdi</td>
+                            <td>@item.Dil</td>
+                            <td>@item.YayimYili</td>
+                            <td>@item.SayfaSayisi</td>
+                            <td>@item.ISBN</td>
+                            <td>@item.Yayınevi</td>
+                            <td class="text-center"><strong>@item.Stok</strong></td>
+                            <td class="text-center">
+
+                                @if (item.Stok == 0)
+                                {
+                                    <button type="button" class="btn btn-danger" disabled>Stokta Yok</button>
+                                }
+                                else if (Model.Item2.Contains(item.Id))
+                                {
+                                    <a href="@Url.Action("Index","Kitaplarim")" class="btn btn-info" type="submit">Kiralandı</a>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#@item.Id">Kirala</button>
+                                    <!--Onay Modal-->
+                                    <div class="modal fade" id="@item.Id" tabindex="-1" aria-labelledby="KitabıKirala" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="KitabıKirala"><b>@item.KitapAdi</b> adlı kitabı kiralamak istediğinize emin misiniz?</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
+                                                    <a href="@Url.Action("Kirala", new { id = item.Id })" class="btn btn-danger" type="submit">Kirala</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    setTimeout(function () {
+        $('#kiralaAlert').fadeOut(1000, function () {
+            $(this).remove();
+        });
+    }, 2000);
+</script>

@@ -1,0 +1,62 @@
+-- Admin verisi --
+INSERT INTO [dbo].[Admins]
+           ([Ad], [Soyad], [KullaniciAdi], [Parola])
+VALUES
+           ('Furkan', 'Belikırık', 'admin', '1234')
+
+-- Yazarlar tablosuna veri ekleme
+INSERT INTO Yazarlar (YazarAdi) VALUES
+('George Orwell'),
+('J.K. Rowling'),
+('Agatha Christie'),
+('Stephen King'),
+('Jane Austen'),
+('Leo Tolstoy'),
+('Ernest Hemingway'),
+('Fyodor Dostoevsky'),
+('Virginia Woolf'),
+('Mark Twain'),
+('Gabriel Garcia Marquez'),
+('J.R.R. Tolkien'),
+('Herman Melville'),
+('Emily Bronte'),
+('Charles Dickens'),
+('Orhan Pamuk'),
+('Yaşar Kemal'),
+('Elif Şafak'),
+('Ahmet Hamdi Tanpınar'),
+('Sabahattin Ali'),
+('Oğuz Atay'),
+('Nazım Hikmet'),
+('Peyami Safa'),
+('Cemal Süreya'),
+('Adalet Ağaoğlu');
+
+-- Kitaplar tablosuna veri ekleme
+INSERT INTO Kitaplar (KitapAdi, Dil, YayimYili, SayfaSayisi, ISBN, YayinEvi, YazarID) VALUES
+('1984', 'İngilizce', 1949, 328, '9780151010264', 'Harcourt Brace & Company', 1),
+('Animal Farm', 'İngilizce', 1945, 112, '9780451526342', 'Signet Classic', 1),
+('Harry Potter and the Philosopher''s Stone', 'İngilizce', 1997, 223, '9780747532743', 'Bloomsbury Publishing', 2),
+('Murder on the Orient Express', 'İngilizce', 1934, 274, '9780007282414', 'HarperCollins', 3),
+('The Shining', 'İngilizce', 1977, 447, '9780385121675', 'Doubleday', 4),
+('Pride and Prejudice', 'İngilizce', 1813, 279, '9780141439518', 'Penguin Books', 5),
+('War and Peace', 'İngilizce', 1869, 1225, '9780140447934', 'Penguin Classics', 6),
+('The Old Man and the Sea', 'İngilizce', 1952, 127, '9780684801223', 'Scribner', 7),
+('Crime and Punishment', 'İngilizce', 1866, 551, '9780140449136', 'Penguin Classics', 8),
+('Mrs Dalloway', 'İngilizce', 1925, 194, '9780156628709', 'Harcourt Brace & Company', 4),
+('The Adventures of Huckleberry Finn', 'İngilizce', 1884, 366, '9780143107323', 'Penguin Classics', 9),
+('One Hundred Years of Solitude', 'İngilizce', 1967, 417, '9780060883287', 'Harper & Row', 6),
+('The Hobbit', 'İngilizce', 1937, 310, '9780547928227', 'Houghton Mifflin', 7),
+('Moby-Dick', 'İngilizce', 1851, 625, '9780142437247', 'Penguin Classics', 8),
+('Wuthering Heights', 'İngilizce', 1847, 464, '9780141439556', 'Penguin Classics', 10),
+('Great Expectations', 'İngilizce', 1861, 505, '9780141439563', 'Penguin Classics', 10),
+('İstanbul: Hatıralar ve Şehir', 'Türkçe', 2003, 560, '9789754583831', 'Yapı Kredi Yayınları', 11),
+('İnce Memed', 'Türkçe', 1955, 384, '9789753638012', 'Yapı Kredi Yayınları', 12),
+('Aşk', 'Türkçe', 2009, 448, '9789752207727', 'Doğan Kitap', 13),
+('Huzur', 'Türkçe', 1949, 384, '9789750723233', 'İş Bankası Kültür Yayınları', 14),
+('Kürk Mantolu Madonna', 'Türkçe', 1943, 180, '9789753638043', 'Yapı Kredi Yayınları', 15),
+('Tutunamayanlar', 'Türkçe', 1971, 504, '9789750816584', 'İletişim Yayınları', 16),
+('Memleketimden İnsan Manzaraları', 'Türkçe', 1943, 160, '9789751027790', 'Remzi Kitabevi', 17),
+('Sergüzeşt', 'Türkçe', 1928, 318, '9789753481742', 'Yapı Kredi Yayınları', 18),
+('Göğe Bakma Durağı', 'Türkçe', 1989, 176, '9789754705092', 'İletişim Yayınları', 19),
+('Ölmeye Yatmak', 'Türkçe', 1973, 112, '9789755101365', 'Everest Yayınları', 20);

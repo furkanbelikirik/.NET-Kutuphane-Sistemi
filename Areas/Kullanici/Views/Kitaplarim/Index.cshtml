@@ -1,0 +1,65 @@
+﻿@model List<FurkanBelikirikSmartProFinalProject.Entities.Kitaplar_Kullanici>
+@{
+    ViewBag.Title = "Kitaplarım";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row align-items-center">
+    <div class="col-lg-6 col-md-12"><h1 class="display-6">Kitaplarım</h1></div>
+</div>
+@if (ViewBag.IadeMesaj != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" id="iadeAlert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        @ViewBag.IadeMesaj
+    </div>
+}
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-light table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Kitap Adı</th>
+                    <th scope="col">Kiralama Tarihi</th>
+                    <th scope="col">Son İade Tarihi</th>
+                    <th scope="col">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row">@item.Kitap.KitapAdi</th>
+                        <td>@item.KiralamaTarih</td>
+                        <td>@item.İadeTarih</td>
+                        <td>
+                            <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#@item.Id">İade Et</button>
+                            <!--Onay Modal-->
+                            <div class="modal fade" id="@item.Id" tabindex="-1" aria-labelledby="KitabıİadeEt" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="KitabıİadeEt"><b>@item.Kitap.KitapAdi</b> adlı kitabı iade etmek istediğinize emin misiniz?</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
+                                            <a href="@Url.Action("IadeEt", new {id=item.Id})" class="btn btn-danger">İade Et</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    setTimeout(function () {
+        $('#iadeAlert').fadeOut(1000, function () {
+            $(this).remove();
+        });
+    }, 2000);
+</script>

@@ -1,0 +1,81 @@
+﻿@model List<FurkanBelikirikSmartProFinalProject.Entities.Kitaplar>
+
+@{
+    ViewBag.Title = "Yazarın Kitapları";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <h1 class="display-6">Kitap Listesi</h1>
+</div>
+@if (ViewBag.SilMesaj != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" id="silAlert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        @ViewBag.SilMesaj
+    </div>
+}
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-light table-hover align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Kitap Adı</th>
+                        <th scope="col">Yazar Adı</th>
+                        <th scope="col">Dil</th>
+                        <th scope="col">Yayım Yılı</th>
+                        <th scope="col">Sayfa Sayısı</th>
+                        <th scope="col">ISBN</th>
+                        <th scope="col">Yayınevi</th>
+                        <th scope="col" class="text-center">İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th scope="row">@item.Id</th>
+                            <td>@item.KitapAdi</td>
+                            <td>@item.Yazar.YazarAdi</td>
+                            <td>@item.Dil</td>
+                            <td>@item.YayimYili</td>
+                            <td>@item.SayfaSayisi</td>
+                            <td>@item.ISBN</td>
+                            <td>@item.Yayınevi</td>
+                            <td class="text-center">
+                                <a href="@Url.Action("Duzenle","Kitap", new {id=item.Id})" class="btn btn-success" type="button">Düzenle</a>
+                                <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#@item.Id">Sil</button>
+                                <!--Onay Modal-->
+                                <div class="modal fade" id="@item.Id" tabindex="-1" aria-labelledby="KitabıSil" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="KitabıSil"><b>@item.KitapAdi</b> adlı kitabı silmek istediğinize emin misiniz?</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
+                                                <a href="@Url.Action("Sil", new {id=item.Id})" class="btn btn-danger">Sil</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    setTimeout(function () {
+        $('#silAlert').fadeOut(1000, function () {
+            $(this).remove();
+        });
+    }, 2000);
+</script>

@@ -1,0 +1,71 @@
+﻿@model FurkanBelikirikSmartProFinalProject.Entities.Kitaplar
+
+@{
+    ViewBag.Title = "Kitap Ekle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h2 class="text-center mb-4">Kitap Ekle</h2>
+        @using (Html.BeginForm())
+        {
+
+            @Html.AntiForgeryToken()
+            <form>
+                <div class="mb-3">
+                    <label for="inputAd" class="form-label">Kitap Adı</label>
+                    @Html.TextBoxFor(x => x.KitapAdi, new { @class = "form-control", placeholder = "Kitabın adını girin", required = "required" })
+                </div>
+                <div class="mb-3">
+                    <label for="inputSoyad" class="form-label">Yazar Adı</label>
+                    @Html.DropDownListFor(x => x.YazarId, ViewBag.YazarlarSelectList as SelectList, new { @class = "form-control", placeholder = "Yazarın adını girin", required = "required" })
+                </div>
+                <div class="mb-3">
+                    <label for="inputDil" class="form-label">Dil</label>
+                    @Html.TextBoxFor(x => x.Dil, new { @class = "form-control", placeholder = "Dil girin", required = "required" })
+                </div>
+                <div class="mb-3">
+                    <label for="inputYil" class="form-label">Yayım Yılı</label>
+                    @Html.TextBoxFor(x => x.YayimYili, new { @class = "form-control", placeholder = "Yayım yılını girin", maxlength = "4", pattern = "[0-9]", required = "required" })
+                </div>
+                <div class="mb-3">
+                    <label for="inputSayfa" class="form-label">Sayfa Sayısı</label>
+                    @Html.TextBoxFor(x => x.SayfaSayisi, new { @class = "form-control", placeholder = "Sayfa sayısını girin", pattern = "[0-9]", required = "required" })
+                </div>
+                <div class="mb-3">
+                    <label for="inputISBN" class="form-label">ISBN (13 Hane)</label>
+                    @Html.TextBoxFor(x => x.ISBN, new { @class = "form-control", placeholder = "ISBN girin", maxlength = "13", pattern = "[0-9]{13}", required = "required" })
+                </div>
+                <div class="mb-3">
+                    <label for="inputYayınevi" class="form-label">Yayınevi</label>
+                    @Html.TextBoxFor(x => x.Yayınevi, new { @class = "form-control", placeholder = "Yayınevini girin", required = "required" })
+                </div>
+                <div class="mb-3">
+                    <label for="inputStok" class="form-label">Stok</label>
+                    @Html.TextBoxFor(x => x.Stok, new { @class = "form-control", type = "number", placeholder = "Stok", required = "required" })
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Ekle</button>
+            </form>
+        }
+        @if (ViewBag.Mesaj == 1)
+        {
+            <div class="alert alert-success d-flex align-items-center mt-3" role="alert">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                <div>
+                    @Model.KitapAdi kitabı başarıyla eklendi!
+                </div>
+            </div>
+        }
+        else if (ViewBag.Mesaj == 0)
+        {
+            <div class="alert alert-danger d-flex align-items-center mt-3" role="alert">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                <div>
+                    Kayıt işlemi sırasında bir hata meydana geldi!
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
